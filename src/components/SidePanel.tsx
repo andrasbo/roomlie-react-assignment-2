@@ -24,7 +24,7 @@ export const SidePanel = () => {
     synchTable,
     deleteTable,
   } = useTable();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [, setIsModalOpen] = useState(false);
   const { role } = useAuth();
 
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
