@@ -13,7 +13,13 @@ export const useTableApi = () => {
   const fetchTables = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(API_URL);
+      const response = await fetch(API_URL, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Neptun-Code": NEPTUN_CODE,
+        },
+      });
 
       if (!response.ok) {
         throw new Error(`Hiba történt: ${response.status}`);
