@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { type TableData, type TableDraft } from "../contexts/TableContext";
 import toast from "react-hot-toast";
 
-const API_URL = "http://localhost:3000/api/v1/tables";
+const API_URL = " https://roomlie-api.gkrisz.space/api/v1/tables";
 const ORIGINAL_STATE_KEY = "roomlie-initial-tables";
 export const NEPTUN_CODE = "HYCZBO";
 

@@ -45,7 +45,7 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
   const getTimeslots = useCallback(async (id: number, date: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/v1/tables/${id}/timeslots?date=${date}`,
+        ` https://roomlie-api.gkrisz.space/api/v1/tables/${id}/timeslots?date=${date}`,
         {
           method: "GET",
           headers: {
@@ -72,14 +72,17 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
 
   const getMyBookings = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/v1/bookings/my`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "X-Neptun-Code": NEPTUN_CODE,
+      const response = await fetch(
+        ` https://roomlie-api.gkrisz.space/api/v1/bookings/my`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "X-Neptun-Code": NEPTUN_CODE,
+          },
         },
-      });
+      );
 
       if (!response.ok) {
         throw new Error(`Hiba történt: ${response.status}`);
@@ -98,14 +101,17 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
 
   const getAllBookings = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/v1/bookings`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "X-Neptun-Code": NEPTUN_CODE,
+      const response = await fetch(
+        ` https://roomlie-api.gkrisz.space/api/v1/bookings`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "X-Neptun-Code": NEPTUN_CODE,
+          },
         },
-      });
+      );
 
       if (!response.ok) {
         throw new Error(`Hiba történt: ${response.status}`);
@@ -134,25 +140,28 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
     notes: string,
   ) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/v1/bookings`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          // "X-Neptun-Code": NEPTUN_CODE,
+      const response = await fetch(
+        ` https://roomlie-api.gkrisz.space/api/v1/bookings`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "X-Neptun-Code": NEPTUN_CODE,
+          },
+          body: JSON.stringify({
+            tableId,
+            date,
+            startTime,
+            endTime,
+            name,
+            email,
+            phone,
+            headcount,
+            notes,
+          }),
         },
-        body: JSON.stringify({
-          tableId,
-          date,
-          startTime,
-          endTime,
-          name,
-          email,
-          phone,
-          headcount,
-          notes,
-        }),
-      });
+      );
 
       if (!response.ok) {
         throw new Error(`Hiba történt: ${response.status}`);
@@ -175,13 +184,13 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
   const evaluateBooking = async (id: number, status: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/v1/bookings/${id}/status`,
+        ` https://roomlie-api.gkrisz.space/api/v1/bookings/${id}/status`,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
-            // "X-Neptun-Code": NEPTUN_CODE,
+            "X-Neptun-Code": NEPTUN_CODE,
           },
           body: JSON.stringify({ status }),
         },

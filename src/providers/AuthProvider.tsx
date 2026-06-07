@@ -34,14 +34,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (email: string, password: string) => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:3000/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Neptun-Code": NEPTUN_CODE,
+      const response = await fetch(
+        " https://roomlie-api.gkrisz.space/api/v1/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Neptun-Code": NEPTUN_CODE,
+          },
+          body: JSON.stringify({ email, password }),
         },
-        body: JSON.stringify({ email, password }),
-      });
+      );
 
       if (!response.ok) {
         throw new Error(`Hiba történt: ${response.status}`);
@@ -85,7 +88,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        "http://localhost:3000/api/v1/auth/register",
+        " https://roomlie-api.gkrisz.space/api/v1/auth/register",
         {
           method: "POST",
           headers: {
